@@ -3267,6 +3267,7 @@
         }
         .toggle-switch.on::after { transform: translateX(22px); }
         .api-input { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 8px; margin-top: 8px; font-family: inherit; }
+        #apiHost[readonly] { background: rgba(0,0,0,0.05); color: var(--text-muted); cursor: not-allowed; }
         .api-field { margin-bottom: 16px; }
         .api-field label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
         .model-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
@@ -6337,7 +6338,7 @@
                 <div class="card" id="apiConfigPanel">
                     <div class="api-field">
                         <label>API Host</label>
-                        <input type="text" class="api-input" id="apiHost" placeholder="https://api.openai.com/v1/chat/completions">
+                        <input type="text" class="api-input" id="apiHost" value="https://meiwei.xiaoxiaoai.xyz/v1" readonly>
                     </div>
                     <div class="api-field">
                         <label>API Key</label>
@@ -8326,7 +8327,7 @@
         }
 
         let userSettings = {
-            api: { endpoint: 'https://api.openai.com/v1/chat/completions', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false },
+            api: { endpoint: 'https://meiwei.xiaoxiaoai.xyz/v1', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false },
             pexelsKey: '',
             momentsApi: { endpoint: '', key: '', model: 'gpt-3.5-turbo' },
             momentsImageApi: { endpoint: '', key: '' },
@@ -13596,7 +13597,7 @@
             const apiStreamEl = document.getElementById('apiStream');
             if (apiHostEl || apiKeyEl || apiModelEl || apiTempEl || apiStreamEl) {
                 if (!userSettings.api || typeof userSettings.api !== 'object') userSettings.api = { endpoint: '', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false };
-                if (apiHostEl && apiHostEl.value.trim() !== '') userSettings.api.endpoint = apiHostEl.value.trim();
+                userSettings.api.endpoint = 'https://meiwei.xiaoxiaoai.xyz/v1';
                 if (apiKeyEl && apiKeyEl.value.trim() !== '') userSettings.api.key = apiKeyEl.value.trim();
                 if (apiModelEl && apiModelEl.value.trim() !== '') userSettings.api.model = apiModelEl.value.trim();
                 if (apiTempEl && apiTempEl.value.trim() !== '') {
@@ -14389,7 +14390,7 @@
             const apiStreamEl = document.getElementById('apiStream');
             if (apiHostEl || apiKeyEl || apiModelEl || apiTempEl || apiStreamEl) {
                 if (!userSettings.api || typeof userSettings.api !== 'object') userSettings.api = { endpoint: '', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false };
-                if (apiHostEl && apiHostEl.value.trim() !== '') userSettings.api.endpoint = apiHostEl.value.trim();
+                userSettings.api.endpoint = 'https://meiwei.xiaoxiaoai.xyz/v1';
                 if (apiKeyEl && apiKeyEl.value.trim() !== '') userSettings.api.key = apiKeyEl.value.trim();
                 if (apiModelEl && apiModelEl.value.trim() !== '') userSettings.api.model = apiModelEl.value.trim();
                 if (apiTempEl && apiTempEl.value.trim() !== '') {
@@ -15169,6 +15170,7 @@
             if (u) {
                 userSettings = JSON.parse(u);
                 if (!userSettings.api || typeof userSettings.api !== 'object') userSettings.api = { endpoint: '', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false };
+                userSettings.api.endpoint = 'https://meiwei.xiaoxiaoai.xyz/v1';
                 if (typeof userSettings.api.temperature !== 'number' || isNaN(userSettings.api.temperature)) userSettings.api.temperature = 0.85;
                 if (typeof userSettings.api.stream !== 'boolean') userSettings.api.stream = false;
                 if (userSettings.pexelsKey === undefined) userSettings.pexelsKey = '';
@@ -17760,7 +17762,7 @@ ${historyDesc}
             var apiStreamEl = document.getElementById('apiStream');
             if (apiHostEl || apiKeyEl || apiModelEl || apiTempEl || apiStreamEl) {
                 if (!userSettings.api || typeof userSettings.api !== 'object') userSettings.api = { endpoint: '', key: '', model: 'gpt-3.5-turbo', temperature: 0.85, stream: false };
-                if (apiHostEl && apiHostEl.value.trim() !== '') userSettings.api.endpoint = apiHostEl.value.trim();
+                userSettings.api.endpoint = 'https://meiwei.xiaoxiaoai.xyz/v1';
                 if (apiKeyEl && apiKeyEl.value.trim() !== '') userSettings.api.key = apiKeyEl.value.trim();
                 if (apiModelEl && apiModelEl.value.trim() !== '') userSettings.api.model = apiModelEl.value.trim();
                 if (apiTempEl && apiTempEl.value.trim() !== '') {
@@ -18028,7 +18030,7 @@ ${historyDesc}
             const temp = (typeof userSettings.api.temperature === 'number' && !isNaN(userSettings.api.temperature))
                 ? userSettings.api.temperature
                 : 1.0;
-            if (h) h.value = userSettings.api.endpoint || '';
+            if (h) h.value = 'https://meiwei.xiaoxiaoai.xyz/v1';
             if (k) k.value = userSettings.api.key || '';
             if (m) m.value = userSettings.api.model || '';
             if (t) {
@@ -18041,7 +18043,7 @@ ${historyDesc}
             if (pk) pk.value = userSettings.pexelsKey || '';
         }
         function saveApiSettings() {
-            userSettings.api.endpoint = document.getElementById('apiHost').value.trim();
+            userSettings.api.endpoint = 'https://meiwei.xiaoxiaoai.xyz/v1';
             userSettings.api.key = document.getElementById('apiKey').value;
             userSettings.api.model = document.getElementById('apiModel').value.trim();
             const tEl = document.getElementById('apiTemperature');
